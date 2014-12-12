@@ -62,7 +62,10 @@ angular.module('gettext').directive('translate', function (gettextCatalog, $pars
                         var oldContents = element.contents();
                         var newContents = newWrapper.contents();
                         $animate.enter(newContents, element);
-                        $animate.leave(oldContents);
+                        oldContents.remove();
+
+                        // Removed the $animate.leave function because it broke IE8
+                        // $animate.leave(oldContents);
                     }
 
                     if (attrs.translateN) {
